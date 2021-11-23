@@ -20,7 +20,7 @@
 </div>
 
 <div *ngIf="!hayError" class="row">
-    <div class="col">
+    <div *ngIf="paises.length > 0" class="col">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -33,13 +33,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td> 1</td>
-                    <td> bandera </td>
-                    <td> nombre</td>
-                    <td> 1325248 </td>
+                <tr *ngFor="let pais of paises, let i = index">
+                    <td> {{i + 1}}</td>
+                    <td> 
+                        <img class="small-flag" [src]="pais.flags.png"> 
+                        <!-- {{pais.flag}}    -->
+                    </td>
+                    <td> {{pais.name.common}} </td>
+                    <td> {{pais.population}} </td>
                     <td>
-                        <a href="/pais/cri">Ver...</a>
+                        <a [routerLink]="['/pais', pais.cca2]">Ver ...</a>
                     </td>
                 </tr>
             </tbody>
